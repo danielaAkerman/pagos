@@ -12,6 +12,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             const myOrder = new Order(orderId)
             await myOrder.pull()
             myOrder.data.status = "closed"
+            myOrder.data.externalOrder = order // BACK UP
             await myOrder.push()
             console.log({ orderId })
             // Busco en DB esta orden, y los datos del comprador, para enviarle un mail
@@ -21,6 +22,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         }
     }
 
-
+    // CONVIENE HACER UN BACKUP DE LOS DATOS DE LA ORDEN DE MERCADO PAGO EN NUESTRA DB
     res.send("ok")
 }

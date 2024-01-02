@@ -32,7 +32,8 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse, token) {
         aditionalInfo: req.body,
         productId,
         userId: token.userId,
-        status: "pending"
+        status: "pending",
+        createdAt: new Date()
     })
 
     // res.send(order.data)
