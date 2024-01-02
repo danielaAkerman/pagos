@@ -39,6 +39,7 @@ async function postHandler(req: NextApiRequest, res: NextApiResponse, token) {
 
     const pref = await createPreference({
         "external_reference": order.id,
+        "notification_url": "https://payments-vert-iota.vercel.app/api/webhooks/mercadopago",
         "back_urls": {
             "success": "https://www.google.com.ar"
         },
