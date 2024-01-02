@@ -2,6 +2,11 @@ import { firestore } from "../firestore";
 
 const collection = firestore.collection("orders")
 
+// Ejemplo para tipar
+type OrderData = {
+    status: "pending" | "payed"
+}
+
 export class Order {
     ref: FirebaseFirestore.DocumentReference
     data: any
@@ -17,10 +22,10 @@ export class Order {
     async push() {
         this.ref.update(this.data)
     }
-static async createNewOrder(newOrderData={}){
-    const newOrderSnap = await collection.add(newOrderData)
-    const newOrder = new Order(newOrderSnap.id)
-    newOrder.data = newOrderData
-    return newOrder
-}
+    static async createNewOrder(newOrderData = {}) {
+        const newOrderSnap = await collection.add(newOrderData)
+        const newOrder = new Order(newOrderSnap.id)
+        newOrder.data = newOrderData
+        return newOrder
+    }
 }
