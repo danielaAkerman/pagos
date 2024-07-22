@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 import parseToken from "parse-bearer-token"
 import { decode } from "lib/jwt"
-import { User } from "lib/models/user"
+import { User } from "models/user"
 
 
 export function authMiddleware(callback) {
